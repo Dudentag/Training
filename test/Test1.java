@@ -54,5 +54,13 @@ public class Test1 {
         Assert.assertTrue(resultsTitle.getText().contains(searchedValue));
         System.out.println("Test Successful");
     }
-
+    @Test
+    public void ejercicio1(){
+        driver.get("http://www.wikipedia.org");
+        WebElement linkEnglish = driver.findElement(By.cssSelector("[title*='English']"));
+        System.out.println(linkEnglish.getText());
+        linkEnglish.click();
+        //WebElement searchInput = driver.findElement(By.cssSelector("#n-randompage a"));
+        //searchInput.submit();
+    }
 }
