@@ -88,14 +88,19 @@ public class Test1 {
         } catch(org.openqa.selenium.NoSuchElementException ex){
             System.out.println(" No Pop-up");
         }
-        WebElement linkOfertas = driver.findElement(By.xpath("//*[@id=\"hotjar-carousel-offers\"]/div[2]/div[2]/div[2]/ul/li[6]/div/div[3]/a"));
-        linkOfertas.click();
-        WebElement textMail = driver.findElement(By.xpath("//*[@id=\"email-first\"]"));
-        textMail.sendKeys("tuvieja@ar.mcd.com");
-        WebElement buttonSubm = driver.findElement(By.xpath("//*[@id=\"dAlert-app\"]/div[2]/div[1]/div[1]/div[2]/a/em"));
-        buttonSubm.click();
-        //#flights-origin
-        //#dAlert-app > div.eva-content > div.eva-main.step-container.form.step-2 > div.eva-grid.step-2 > div:nth-child(2) > div.eva-col-small-12.destination-container > div > div:nth-child(2) > div > div > input
-
+        try {
+            WebElement linkOfertas = driver.findElement(By.xpath("//*[@id=\"hotjar-carousel-offers\"]/div[2]/div[2]/div[2]/ul/li[6]/div/div[3]/a"));
+            linkOfertas.click();
+            WebElement textMail = driver.findElement(By.xpath("//*[@id=\"email-first\"]"));
+            textMail.sendKeys("tuvieja@ar.mcd.com");
+            WebElement buttonSubm = driver.findElement(By.xpath("//*[@id=\"dAlert-app\"]/div[2]/div[1]/div[1]/div[2]/a/em"));
+            buttonSubm.click();
+            //#flights-origin
+            //#dAlert-app > div.eva-content > div.eva-main.step-container.form.step-2 > div.eva-grid.step-2 > div:nth-child(2) > div.eva-col-small-12.destination-container > div > div:nth-child(2) > div > div > input
+            WebElement textOrigen = driver.findElement(By.cssSelector("#flights-origin"));
+            textOrigen.sendKeys("Argentina");
+        } catch(org.openqa.selenium.NoSuchElementException ex){
+            System.out.println("No se encontro Ofertas para usted, caguese macho");
+        }
     }
 }
