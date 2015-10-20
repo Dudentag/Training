@@ -5,9 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 /**
- * Created by Alexis on 16/10/2015.
+ * Created by Dudentag on 16/10/2015.
  */
 public class Test1 {
     WebDriver driver;
@@ -15,10 +16,11 @@ public class Test1 {
     @Before
     public void StartUp(){
         driver = new FirefoxDriver(); //ESTO ABRE EL DRIVER
-        driver.manage().window().maximize();
+        driver.manage().window().maximize(); // depegar muestra las ofertas solo maximizado
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); // los popup de despegar tardan en abrirse
     }
 
-    @After
+    //@After
     public void tearDown(){
         driver.close();//CIERRA EL DRIVER
     }
@@ -89,7 +91,11 @@ public class Test1 {
         WebElement linkOfertas = driver.findElement(By.xpath("//*[@id=\"hotjar-carousel-offers\"]/div[2]/div[2]/div[2]/ul/li[6]/div/div[3]/a"));
         linkOfertas.click();
         WebElement textMail = driver.findElement(By.xpath("//*[@id=\"email-first\"]"));
-        //textMail.sendKeys("tuvieja@ar.mcd.com");
-        //textMail.submit();
+        textMail.sendKeys("tuvieja@ar.mcd.com");
+        WebElement buttonSubm = driver.findElement(By.xpath("//*[@id=\"dAlert-app\"]/div[2]/div[1]/div[1]/div[2]/a/em"));
+        buttonSubm.click();
+        //#flights-origin
+        //#dAlert-app > div.eva-content > div.eva-main.step-container.form.step-2 > div.eva-grid.step-2 > div:nth-child(2) > div.eva-col-small-12.destination-container > div > div:nth-child(2) > div > div > input
+
     }
 }
