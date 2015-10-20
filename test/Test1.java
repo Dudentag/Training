@@ -15,7 +15,7 @@ public class Test1 {
     @Before
     public void StartUp(){
         driver = new FirefoxDriver(); //ESTO ABRE EL DRIVER
-        //driver.manage().
+        driver.manage().window().maximize();
     }
 
     @After
@@ -76,5 +76,20 @@ public class Test1 {
         } catch(org.openqa.selenium.NoSuchElementException ex){
             System.out.println(" No Default Image Found");
          }
+    }
+    @Test
+    public void ejercicio2(){
+        driver.get("http://www.despegar.com");
+        try {
+            WebElement popup = driver.findElement(By.cssSelector("#nibbler-facebook-overlay > span.nibbler-common-overlay-close"));
+            popup.click();
+        } catch(org.openqa.selenium.NoSuchElementException ex){
+            System.out.println(" No Pop-up");
+        }
+        WebElement linkOfertas = driver.findElement(By.xpath("//*[@id=\"hotjar-carousel-offers\"]/div[2]/div[2]/div[2]/ul/li[6]/div/div[3]/a"));
+        linkOfertas.click();
+        WebElement textMail = driver.findElement(By.xpath("//*[@id=\"email-first\"]"));
+        //textMail.sendKeys("tuvieja@ar.mcd.com");
+        //textMail.submit();
     }
 }
