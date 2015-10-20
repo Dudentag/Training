@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.NoSuchElementException;
+
 /**
  * Created by Alexis on 16/10/2015.
  */
@@ -13,6 +15,7 @@ public class Test1 {
     @Before
     public void StartUp(){
         driver = new FirefoxDriver(); //ESTO ABRE EL DRIVER
+        //driver.manage().
     }
 
     @After
@@ -60,7 +63,18 @@ public class Test1 {
         WebElement linkEnglish = driver.findElement(By.cssSelector("[title*='English']"));
         System.out.println(linkEnglish.getText());
         linkEnglish.click();
-        //WebElement searchInput = driver.findElement(By.cssSelector("#n-randompage a"));
-        //searchInput.submit();
+        WebElement randomlink = driver.findElement(By.cssSelector("#n-randompage a"));
+        randomlink.click();
+        WebElement resultsTitle = driver.findElement(By.cssSelector("#firstHeading"));
+        System.out.println(resultsTitle.getText());
+        // First image on page *.img
+        //WebElement firstImage = driver.findElement(By.tagName("img"));
+        //If exist, the image at right, like the Default for the search
+        try {
+            WebElement firstImage = driver.findElement(By.xpath("//*[@id=\"mw-content-text\"]/table[1]/tbody/tr[2]/td/a/img"));
+            System.out.println(firstImage.getAttribute("src"));
+        } catch(org.openqa.selenium.NoSuchElementException ex){
+            System.out.println(" No Default Image Found");
+         }
     }
 }
